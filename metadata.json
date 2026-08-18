@@ -1,0 +1,6 @@
+{
+  "name": "SETHIZZZ",
+  "description": "Modern e-commerce brand based out of Dimapur, Nagaland, featuring live countdown deals, dynamic category explorer, PDP layout, size charts, and complete checkout experience.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
