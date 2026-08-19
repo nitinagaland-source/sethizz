@@ -190,7 +190,7 @@ export const ProductEditPage: React.FC = () => {
               <Field label="Fabric"><Input value={product.details.fabric} onChange={(v) => update({ details: { ...product.details, fabric: v } })} placeholder="100% Combed Cotton" /></Field>
               <Field label="Weight"><Input value={product.details.weight} onChange={(v) => update({ details: { ...product.details, weight: v } })} placeholder="260 GSM" /></Field>
               <Field label="Fit"><Input value={product.details.fit} onChange={(v) => update({ details: { ...product.details, fit: v } })} placeholder="Boxy Oversized" /></Field>
-              <Field label="Model Wears"><Input value={product.details.modelWears} onChange={(v) => update({ details: { ...product.details, modelWears: v } })} placeholder="6'0\" model wears M" /></Field>
+              <Field label="Model Wears"><Input value={product.details.modelWears} onChange={(v) => update({ details: { ...product.details, modelWears: v } })} placeholder=placeholder="6ft model wears M" /></Field>
             </div>
           </Section>
 
