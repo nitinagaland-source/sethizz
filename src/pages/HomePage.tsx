@@ -148,7 +148,7 @@ export const HomePage: React.FC = () => {
       >
         {/* Desktop & Tablet Banner Image (hidden on mobile, visible from sm: 640px upwards) */}
         <img
-          src="https://i.ibb.co/MDpsJXM0/aef7a6d5-ebf0-48fd-ac1c-b613a5eb061b.webp"
+          src={homeData?.hero?.image || "https://i.ibb.co/MDpsJXM0/aef7a6d5-ebf0-48fd-ac1c-b613a5eb061b.webp"}
           alt="SETHIZZZ - Redefine Everyday"
           referrerPolicy="no-referrer"
           className="hidden sm:block absolute inset-0 w-full h-full object-cover object-center select-none pointer-events-none"
@@ -161,6 +161,32 @@ export const HomePage: React.FC = () => {
           referrerPolicy="no-referrer"
           className="block sm:hidden absolute inset-0 w-full h-full object-cover object-center select-none pointer-events-none"
         />
+
+        {/* Gradient scrim — only shown when Firestore hero content is set */}
+        {(homeData?.hero?.title || homeData?.hero?.eyebrow) && (
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent pointer-events-none" />
+        )}
+
+        {/* Hero Text Overlay — fully controlled from admin Site Content */}
+        {(homeData?.hero?.title || homeData?.hero?.eyebrow || homeData?.hero?.subtitle) && (
+          <div className="absolute left-4 sm:left-8 md:left-14 top-1/2 -translate-y-[55%] z-10 max-w-[240px] sm:max-w-sm md:max-w-md">
+            {homeData?.hero?.eyebrow && (
+              <span className="text-[9px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-white/75 block mb-1.5 sm:mb-2">
+                {homeData.hero.eyebrow}
+              </span>
+            )}
+            {homeData?.hero?.title && (
+              <h1 className="text-[1.6rem] sm:text-4xl md:text-5xl font-black tracking-tight text-white leading-[1.05] mb-1.5 sm:mb-3">
+                {homeData.hero.title}
+              </h1>
+            )}
+            {homeData?.hero?.subtitle && (
+              <p className="text-[10px] sm:text-sm text-white/80 leading-relaxed max-w-[200px] sm:max-w-xs">
+                {homeData.hero.subtitle}
+              </p>
+            )}
+          </div>
+        )}
 
         {/* Action Buttons placed lower down, centered in a clean single row */}
         <div className="absolute bottom-2.5 sm:bottom-5 md:bottom-6 lg:bottom-7 inset-x-0 px-2 sm:px-6 z-10 flex justify-center">
@@ -486,7 +512,7 @@ export const HomePage: React.FC = () => {
           </span>
 
           <h2 className="text-2xl sm:text-3xl md:text-[32px] font-extrabold tracking-tight text-white leading-tight">
-            Join the <span className="text-[#FB923C]">SETHIZZZ Club</span>
+            {nlTitle}
           </h2>
           <p className="mt-2.5 text-xs sm:text-[14px] text-white/85 leading-relaxed max-w-md mx-auto">
             {nlBody} Use code <strong className="text-white">{nlCoupon}</strong>.
