@@ -17,6 +17,7 @@ import {
   Flame,
 } from 'lucide-react';
 import { useStorefrontData } from '../hooks/useStorefrontData';
+import { useHomeContent } from '../hooks/useSiteContent';
 import { ProductCard } from '../components/products/ProductCard';
 import { ShinyCard } from '../components/ui/shiny-card';
 import { CategoryExplorer } from '../components/home/CategoryExplorer';
@@ -108,6 +109,20 @@ const LOOKBOOK_SLIDES: CoverflowSlide[] = [
 export const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const { products, categories, homeTestimonials } = useStorefrontData();
+  const { content: homeData } = useHomeContent();
+  const heroPrimaryCTALabel   = homeData?.hero?.primaryCta?.label   || 'Shop Collection';
+  const heroSecondaryCTALabel = homeData?.hero?.secondaryCta?.label || 'New Arrivals';
+  const dealTitle    = homeData?.dealBanner?.title       || 'Deals of the Day';
+  const dealViewAll  = homeData?.dealBanner?.viewAllLink || '/shop?filter=deals';
+  const offerEyebrow = homeData?.specialOffer?.eyebrow   || 'Special Offer';
+  const offerTitle   = homeData?.specialOffer?.title     || 'Up to 50% Off';
+  const offerSubtitle= homeData?.specialOffer?.subtitle  || 'On select heavyweight tees, French terry hoodies, and jackets. Limited quantities only!';
+  const offerCTA     = homeData?.specialOffer?.ctaText   || 'Shop the Sale';
+  const offerCTALink = homeData?.specialOffer?.ctaLink   || '/shop?filter=deals';
+  const offerBg      = homeData?.specialOffer?.image     || 'https://i.ibb.co/VWbngKy2/e9c9bbb3-9f38-433f-83c0-baa3400205e6.png';
+  const nlTitle  = homeData?.newsletter?.title      || 'Join the SETHIZZZ Club';
+  const nlBody   = homeData?.newsletter?.body       || 'Get 10% off your first order, plus early access to limited edition seasonal drops.';
+  const nlCoupon = homeData?.newsletter?.couponCode || 'SAVE10';
   const countdown = useCountdown(12, 45, 32);
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterSubscribed, setNewsletterSubscribed] = useState(false);
@@ -161,7 +176,7 @@ export const HomePage: React.FC = () => {
               className="h-6.5 sm:h-9 px-2 sm:px-4 rounded-full bg-white text-[#0F0F14] text-[9px] sm:text-xs font-bold inline-flex items-center gap-1 sm:gap-1.5 hover:bg-[#F4F4F5] hover:scale-105 active:scale-95 transition-all shadow-md group/btn flex-shrink-0 whitespace-nowrap"
             >
               <ShoppingBag size={10} className="sm:w-[13px] sm:h-[13px] text-[#5B21B6]" />
-              <span>Shop Collection</span>
+              <span>{heroPrimaryCTALabel}</span>
               <ArrowRight size={10} className="sm:w-[13px] sm:h-[13px] transition-transform group-hover/btn:translate-x-0.5" />
             </Link>
 
@@ -171,7 +186,7 @@ export const HomePage: React.FC = () => {
               className="h-6.5 sm:h-9 px-1.5 sm:px-3.5 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-md text-white text-[9px] sm:text-xs font-semibold border border-white/25 inline-flex items-center gap-1 sm:gap-1.5 hover:scale-105 active:scale-95 transition-all shadow-sm flex-shrink-0 whitespace-nowrap"
             >
               <Flame size={10} className="sm:w-[13px] sm:h-[13px] text-[#FBBF24]" />
-              <span>New Arrivals</span>
+              <span>{heroSecondaryCTALabel}</span>
             </Link>
 
             <button
@@ -257,7 +272,7 @@ export const HomePage: React.FC = () => {
         <div className="flex items-center justify-between gap-3 mb-3 sm:mb-4">
           <div className="flex items-center gap-2.5 sm:gap-3 flex-wrap">
             <h2 className="deals-luxury-title text-[19px] sm:text-2xl md:text-[26px] font-extrabold tracking-tight leading-none">
-              Deals of the Day
+              {dealTitle}
             </h2>
 
             {/* Premium Frosted Countdown Badge */}
@@ -278,7 +293,7 @@ export const HomePage: React.FC = () => {
           </div>
 
           <Link
-            to="/shop?filter=deals"
+            to={dealViewAll}
             className="text-[11.5px] sm:text-xs font-bold text-zinc-600 hover:text-[#E15B3E] uppercase tracking-wider flex items-center gap-1 transition-colors flex-shrink-0"
           >
             <span>View All</span>
@@ -297,7 +312,7 @@ export const HomePage: React.FC = () => {
       <section className="relative rounded-3xl overflow-hidden bg-zinc-950 text-white p-7 sm:p-11 lg:p-14 border border-zinc-800/80 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5)] group">
         {/* Background Editorial Image */}
         <img
-          src="https://i.ibb.co/VWbngKy2/e9c9bbb3-9f38-433f-83c0-baa3400205e6.png"
+          src={offerBg}
           alt="Special Offer Background"
           className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
           referrerPolicy="no-referrer"
@@ -312,24 +327,22 @@ export const HomePage: React.FC = () => {
 
         <div className="relative max-w-2xl">
           <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/15 backdrop-blur-md text-[10.5px] font-extrabold tracking-[0.18em] uppercase text-white mb-3.5 border border-white/25 shadow-xs">
-            Special Offer
+            {offerEyebrow}
           </span>
 
           <h2 className="text-[clamp(1.85rem,4.5vw,3.25rem)] font-extrabold leading-[1.08] tracking-tight">
-            Up to <span className="text-[#FB923C]">50% Off</span>
+            {offerTitle}
           </h2>
 
           <p className="mt-1.5 sm:mt-2 text-white/80 text-[11px] sm:text-[12.5px] leading-relaxed tracking-tight">
-            On select heavyweight tees,<br />
-            French terry hoodies, and jackets.<br />
-            Limited quantities only!
+            {offerSubtitle}
           </p>
 
           <Link
-            to="/shop?filter=deals"
+            to={offerCTALink}
             className="mt-5 sm:mt-6 inline-flex items-center gap-2 h-11 sm:h-12 px-6 sm:px-7 rounded-full bg-white text-zinc-900 font-bold text-xs sm:text-sm hover:bg-zinc-100 hover:shadow-xl hover:-translate-y-0.5 active:scale-95 transition-all shadow-md cursor-pointer"
           >
-            <span>Shop the Sale</span>
+            <span>{offerCTA}</span>
             <span>→</span>
           </Link>
         </div>
@@ -476,13 +489,13 @@ export const HomePage: React.FC = () => {
             Join the <span className="text-[#FB923C]">SETHIZZZ Club</span>
           </h2>
           <p className="mt-2.5 text-xs sm:text-[14px] text-white/85 leading-relaxed max-w-md mx-auto">
-            Get 10% off your first order with code <strong className="text-white">SAVE10</strong>, plus early access to limited edition seasonal drops.
+            {nlBody} Use code <strong className="text-white">{nlCoupon}</strong>.
           </p>
 
           {newsletterSubscribed ? (
             <div className="mt-5 inline-flex items-center gap-2 p-2.5 px-5 rounded-full bg-emerald-500/20 backdrop-blur-md border border-emerald-400/40 text-emerald-200 text-xs sm:text-sm font-semibold">
               <CheckCircle2 size={16} />
-              <span>You're in! Use coupon <strong className="text-white">SAVE10</strong> at checkout.</span>
+              <span>You're in! Use coupon <strong className="text-white">{nlCoupon}</strong> at checkout.</span>
             </div>
           ) : (
             <form
