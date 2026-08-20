@@ -2,11 +2,13 @@
 import React, { useState, useMemo } from 'react';
 import { useParams, useSearchParams, Link } from 'react-router-dom';
 import { ChevronRight, Filter, X, SlidersHorizontal, ArrowUpDown } from 'lucide-react';
-import { products, categories, Product } from '../data/mockData';
+import type { Product } from '../data/mockData';
+import { useStorefrontData } from '../hooks/useStorefrontData';
 import { ProductCard } from '../components/products/ProductCard';
 import { formatINR } from '../utils/format';
 
 export const ShopPage: React.FC = () => {
+  const { products, categories } = useStorefrontData();
   const { category: routeCategory } = useParams<{ category?: string }>();
   const [searchParams, setSearchParams] = useSearchParams();
 

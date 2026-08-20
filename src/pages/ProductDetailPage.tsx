@@ -19,7 +19,7 @@ import {
   Check,
   PackageCheck,
 } from 'lucide-react';
-import { products } from '../data/mockData';
+import { useStorefrontData } from '../hooks/useStorefrontData';
 import { useStore } from '../context/StoreContext';
 import { formatINR } from '../utils/format';
 import { ProductCarousel } from '../components/products/ProductCarousel';
@@ -27,6 +27,7 @@ import { StickyMobileBuyBar } from '../components/products/StickyMobileBuyBar';
 import { SizeGuideModal } from '../components/products/SizeGuideModal';
 
 export const ProductDetailPage: React.FC = () => {
+  const { products } = useStorefrontData();
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const { addToCart, toggleWishlist, wishlist } = useStore();

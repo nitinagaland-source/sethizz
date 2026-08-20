@@ -16,7 +16,7 @@ import {
   CheckCircle2,
   Flame,
 } from 'lucide-react';
-import { products, categories, homeTestimonials } from '../data/mockData';
+import { useStorefrontData } from '../hooks/useStorefrontData';
 import { ProductCard } from '../components/products/ProductCard';
 import { ShinyCard } from '../components/ui/shiny-card';
 import { CategoryExplorer } from '../components/home/CategoryExplorer';
@@ -107,6 +107,7 @@ const LOOKBOOK_SLIDES: CoverflowSlide[] = [
 
 export const HomePage: React.FC = () => {
   const navigate = useNavigate();
+  const { products, categories, homeTestimonials } = useStorefrontData();
   const countdown = useCountdown(12, 45, 32);
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterSubscribed, setNewsletterSubscribed] = useState(false);
