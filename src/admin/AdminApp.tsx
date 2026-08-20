@@ -9,8 +9,9 @@ import { ProductEditPage } from './pages/ProductEditPage';
 import { CategoriesPage } from './pages/CategoriesPage';
 import {
   OrdersListPage, CustomersPage, ReviewsPage, CouponsPage,
-  InventoryPage, AnalyticsPage, SiteContentPage, SettingsPage,
+  InventoryPage, AnalyticsPage, SettingsPage,
 } from './pages/StubPages';
+import { SiteContentPage } from './pages/SiteContentPage';
 
 export const AdminApp: React.FC = () => {
   return (
