@@ -172,26 +172,6 @@ export const HomePage: React.FC = () => {
           </>
         )}
 
-        {/* Always-on gradient scrim for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-transparent pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent pointer-events-none" />
-
-        {/* Hero text — always from Firestore with fallbacks. Change via admin > Site Content > Hero Banner */}
-        <div className="absolute left-4 sm:left-8 md:left-14 top-1/2 -translate-y-[55%] z-10 max-w-[240px] sm:max-w-sm md:max-w-md">
-          {(homeData?.hero?.eyebrow) && (
-            <span className="text-[9px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-white/70 block mb-1.5 sm:mb-2">
-              {homeData.hero.eyebrow}
-            </span>
-          )}
-          <h1 className="text-[1.75rem] sm:text-4xl md:text-[3.25rem] font-black tracking-tight text-white leading-[1.05] mb-2 sm:mb-3">
-            {homeData?.hero?.title || 'Redefine Everyday.'}
-          </h1>
-          <p className="text-[10px] sm:text-[13px] text-white/75 leading-relaxed max-w-[200px] sm:max-w-xs">
-            {homeData?.hero?.subtitle || 'Timeless pieces. Modern edge.
-Built for the way you move.'}
-          </p>
-        </div>
-
         {/* Action Buttons placed lower down, centered in a clean single row */}
         <div className="absolute bottom-2.5 sm:bottom-5 md:bottom-6 lg:bottom-7 inset-x-0 px-2 sm:px-6 z-10 flex justify-center">
           <motion.div
