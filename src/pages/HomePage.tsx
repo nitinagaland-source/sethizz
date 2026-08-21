@@ -112,6 +112,7 @@ export const HomePage: React.FC = () => {
   const { content: homeData } = useHomeContent();
   const heroPrimaryCTALabel   = homeData?.hero?.primaryCta?.label   || 'Shop Collection';
   const heroSecondaryCTALabel = homeData?.hero?.secondaryCta?.label || 'New Arrivals';
+  const heroTertiaryCTALabel  = homeData?.hero?.tertiaryCta?.label  || 'Watch Story';
   const dealTitle    = homeData?.dealBanner?.title       || 'Deals of the Day';
   const dealViewAll  = homeData?.dealBanner?.viewAllLink || '/shop?filter=deals';
   const offerEyebrow = homeData?.specialOffer?.eyebrow   || 'Special Offer';
@@ -225,7 +226,7 @@ Built for the way you move.'}
               className="h-6.5 sm:h-9 px-1.5 sm:px-3 rounded-full bg-black/45 hover:bg-black/65 backdrop-blur-md text-white text-[9px] sm:text-xs font-medium border border-white/20 inline-flex items-center gap-1 sm:gap-1.5 hover:scale-105 active:scale-95 transition-all flex-shrink-0 whitespace-nowrap cursor-pointer"
             >
               <PlayCircle size={11} className="sm:w-[14px] sm:h-[14px] text-[#DDD6FE]" />
-              <span>Watch Story</span>
+              <span>{heroTertiaryCTALabel}</span>
             </button>
           </motion.div>
         </div>

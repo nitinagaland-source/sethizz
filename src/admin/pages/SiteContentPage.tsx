@@ -51,7 +51,7 @@ export const SiteContentPage: React.FC = () => {
   const footerContent = useFooterContent();
 
   // ── Hero state ──
-  const [hero, setHero] = useState({ title: '', subtitle: '', eyebrow: '', image: '', primaryCtaLabel: '', primaryCtaHref: '', secondaryCtaLabel: '', secondaryCtaHref: '' });
+  const [hero, setHero] = useState({ image: '', primaryCtaLabel: '', primaryCtaHref: '', secondaryCtaLabel: '', secondaryCtaHref: '', tertiaryCtaLabel: '' });
   const [heroSaving, setHeroSaving] = useState(false);
   const [heroSaved, setHeroSaved] = useState(false);
 
@@ -86,14 +86,12 @@ export const SiteContentPage: React.FC = () => {
     if (!homeContent) return;
     const h = homeContent.hero || {};
     setHero({
-      title: h.title || '',
-      subtitle: h.subtitle || '',
-      eyebrow: h.eyebrow || '',
       image: h.image || '',
       primaryCtaLabel: h.primaryCta?.label || '',
       primaryCtaHref: h.primaryCta?.href || '',
       secondaryCtaLabel: h.secondaryCta?.label || '',
       secondaryCtaHref: h.secondaryCta?.href || '',
+      tertiaryCtaLabel: h.tertiaryCta?.label || '',
     });
     const d = homeContent.dealBanner || {};
     let endsAtStr = '';
@@ -133,12 +131,10 @@ export const SiteContentPage: React.FC = () => {
     setHeroSaving(true);
     await mergeHome({
       hero: {
-        eyebrow: hero.eyebrow,
-        title: hero.title,
-        subtitle: hero.subtitle,
         image: hero.image,
         primaryCta: { label: hero.primaryCtaLabel, href: hero.primaryCtaHref },
         secondaryCta: { label: hero.secondaryCtaLabel, href: hero.secondaryCtaHref },
+        tertiaryCta: { label: hero.tertiaryCtaLabel, href: '' },
       },
     });
     setHeroSaving(false); setHeroSaved(true); setTimeout(() => setHeroSaved(false), 2500);
@@ -246,30 +242,26 @@ export const SiteContentPage: React.FC = () => {
             <h2 className="font-semibold text-zinc-800">Hero Banner</h2>
             <SaveButton saving={heroSaving} saved={heroSaved} onClick={saveHero} />
           </div>
+          <p className="text-xs text-zinc-500">The banner image has the headline text built in. Use these fields to control the image and the 3 buttons below it.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <Field label="Eyebrow text">
-              <input className={inputCls} value={hero.eyebrow} onChange={e => setHero(p => ({ ...p, eyebrow: e.target.value }))} placeholder="e.g. NEW COLLECTION" />
+            <Field label="Banner image URL">
+              <input className={inputCls} value={hero.image} onChange={e => setHero(p => ({ ...p, image: e.target.value }))} placeholder="https://i.ibb.co/..." />
             </Field>
-            <Field label="Image URL">
-              <input className={inputCls} value={hero.image} onChange={e => setHero(p => ({ ...p, image: e.target.value }))} placeholder="https://..." />
-            </Field>
-            <Field label="Title">
-              <input className={inputCls} value={hero.title} onChange={e => setHero(p => ({ ...p, title: e.target.value }))} placeholder="Redefine Everyday" />
-            </Field>
-            <Field label="Subtitle">
-              <input className={inputCls} value={hero.subtitle} onChange={e => setHero(p => ({ ...p, subtitle: e.target.value }))} placeholder="Premium quality..." />
-            </Field>
-            <Field label="Primary CTA label">
+            <div className="hidden sm:block" />
+            <Field label="Button 1 label (Shop Collection)">
               <input className={inputCls} value={hero.primaryCtaLabel} onChange={e => setHero(p => ({ ...p, primaryCtaLabel: e.target.value }))} placeholder="Shop Collection" />
             </Field>
-            <Field label="Primary CTA link">
+            <Field label="Button 1 link">
               <input className={inputCls} value={hero.primaryCtaHref} onChange={e => setHero(p => ({ ...p, primaryCtaHref: e.target.value }))} placeholder="/shop" />
             </Field>
-            <Field label="Secondary CTA label">
+            <Field label="Button 2 label (New Arrivals)">
               <input className={inputCls} value={hero.secondaryCtaLabel} onChange={e => setHero(p => ({ ...p, secondaryCtaLabel: e.target.value }))} placeholder="New Arrivals" />
             </Field>
-            <Field label="Secondary CTA link">
+            <Field label="Button 2 link">
               <input className={inputCls} value={hero.secondaryCtaHref} onChange={e => setHero(p => ({ ...p, secondaryCtaHref: e.target.value }))} placeholder="/shop?sort=newest" />
+            </Field>
+            <Field label="Button 3 label (Watch Story)">
+              <input className={inputCls} value={hero.tertiaryCtaLabel} onChange={e => setHero(p => ({ ...p, tertiaryCtaLabel: e.target.value }))} placeholder="Watch Story" />
             </Field>
           </div>
           {hero.image && (
