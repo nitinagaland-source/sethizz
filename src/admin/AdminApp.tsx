@@ -7,10 +7,13 @@ import { DashboardPage } from './pages/DashboardPage';
 import { ProductsListPage } from './pages/ProductsListPage';
 import { ProductEditPage } from './pages/ProductEditPage';
 import { CategoriesPage } from './pages/CategoriesPage';
-import {
-  OrdersListPage, CustomersPage, ReviewsPage, CouponsPage,
-  InventoryPage, AnalyticsPage, SettingsPage,
-} from './pages/StubPages';
+import { OrdersListPage } from './pages/OrdersListPage';
+import { CustomersPage } from './pages/CustomersPage';
+import { ReviewsPage } from './pages/ReviewsPage';
+import { CouponsPage } from './pages/CouponsPage';
+import { InventoryPage } from './pages/InventoryPage';
+import { AnalyticsPage } from './pages/AnalyticsPage';
+import { SettingsPage } from './pages/SettingsPage';
 import { SiteContentPage } from './pages/SiteContentPage';
 
 export const AdminApp: React.FC = () => {
